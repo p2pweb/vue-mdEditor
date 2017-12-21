@@ -1,7 +1,6 @@
 <template>
     <div class="mdContainer" :class="{ fullPage: fullPageStatus }">
         <div class="navContainer" v-if="navStatus">
-            <div class="nameContainer" v-if="icoStatusP" @click="happyDay">OVEN-mdEditor</div>
             <div class="markContainer">
                 <ul class="markListGroup">
                     <li class="markListItem" @click="addStrong" title="strong"><b>B</b></li>
@@ -25,7 +24,7 @@
                     <li class="markListItem" @click="previewFn" title="preview"><i class="fa fa-eye-slash" aria-hidden="true"></i></li>
                     <li class="markListItem" @click="previewAllFn" title="previewAll"><i class="fa fa-eye" aria-hidden="true"></i></li>
                 </ul>
-    
+
             </div>
         </div>
         <div class="mdBodyContainer" :class="{ noMenu: !navStatus }">
@@ -40,7 +39,7 @@
 
 <script>
     import Vue from 'vue'
-    import marked from 'marked'
+    import marked from 'kramed'
     import scroll from 'vue-scroll'
     import hljs from '../../static/js/highlight.min.js'
     import range from '../../static/js/rangeFn.js'
@@ -49,7 +48,7 @@
         renderer: new marked.Renderer(),
         gfm: true,
         tables: true,
-        breaks: false,
+        breaks: true,
         pedantic: false,
         sanitize: true,
         smartLists: true,
@@ -58,7 +57,7 @@
             return hljs.highlightAuto(code).value
         }
     });
-    
+
     function insertContent(val, that) {
         let textareaDom = document.querySelector('.mdEditor');
         let value = textareaDom.value;
@@ -105,7 +104,7 @@
                 }
             },
             addImage: function(evt) {
-                insertContent("![Vue](https://cn.vuejs.org/images/logo.png)", this);
+                insertContent("![P2PWEB](https://st.im/meK0)", this);
             },
             addHTitle: function(index) {
                 let tmp = '';
@@ -281,15 +280,15 @@
 
 <style lang="scss">
     /*引入reset文件*/
-    
+
     @import "../../static/css/reset";
-    
+
     /*引入github的markdown样式文件*/
-    
+
     @import "../../static/css/github-markdown.css";
-    
+
     /*引入atom的代码高亮样式文件*/
-    
+
     @import "../../static/css/atom-one-dark.min.css";
     .mdContainer {
         width: 100%;
@@ -311,11 +310,6 @@
             justify-content: flex-start;
             align-items: center;
             padding: 0 10px;
-            .nameContainer {
-                color: lightblue;
-                margin-right: 10px;
-                cursor:pointer;
-            }
             .markContainer {
                 width: auto;
                 height: 100%;
@@ -357,7 +351,7 @@
             }
         }
     }
-    
+
     // 编辑区域
     .editContainer {
         height: 100%;
@@ -376,7 +370,7 @@
             resize: none;
         }
     }
-    
+
     // 预览区
     .previewContainer {
         width: 100%;
